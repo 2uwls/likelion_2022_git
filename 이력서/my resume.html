@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>이유진의 이력서</title>
+    <link rel="stylesheet" href="resume_css.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="mainbox">
+        <div class="title-box">
+            <h1>이유진</h1>
+            <p class="name-text">html/css 개발 공부</p>  
+        </div>
+        <section class="AboutMeBox">
+            <h2>ABOUT ME</h2>
+                <section id="profile">
+                    <P class="about-me-text">
+                        성균관대학교 문헌정보학과 재학 2021~
+                        </P>
+                        <P class="about-me-text">
+                        생년월일: 2001.11.26
+                        </P>
+                        <P class="about-me-text">
+                        좋아하는 색깔: 보라색
+                        </P>
+                        <P class="about-me-text">
+                        요즘 듣는 노래: 백예린 -antifreeze
+                        </P>
+                </section>
+               
+        </section>
+
+        <section class="ExperienceBox">
+            <h2>EXPERIENCE</h2>
+            <Section id="experience">
+                <div class="float-wrap">
+                    <p class="title-text">Awesome programming studying</p>
+                    <p class="year-text">2021-NOW</p>
+                </div>
+                <p class="desc-text">Front-End Web Developer</p>
+                <p class="desc-subtext">HTML/CSS,Js,React,...</p>
+
+            </Section>
+            
+        </section>
+
+        <section class="ActivityBox">
+            <h2>ACTIVITIES</h2>
+                <section id="activity">
+                    <div class="float-wrap">
+                        <p class="title-text">멋쟁이 사자처럼</p>
+                        <p class="year-text">2022~</p>
+                    </div>
+                    <p class="desc-text">프론트엔드</p>
+                    <p class="desc-subtext">html,java,python 공부중</p>
+                    <div class="float-wrap">
+                        <p class="title-text">과 학생회</p>
+                        <p class="year-text">2022~</p>
+                    </div>
+                    <p class="desc-text">복지부</p>
+                    <p class="desc-subtext">과방 물품 정리,연세대 교류전</p>
+                    <div class="float-wrap">
+                        <p class="title-text">밴드부</p>
+                        <p class="year-text">2022~</p>
+                    </div>
+                    <p class="desc-text">키보드</p>
+                    <p class="desc-subtext">summer,returns,그대에게,Antifreeze</p>
+
+                </section>
+          
+        </section>
+    
+        <section class="EduBox">
+            <h2>EDUCATION</h2>
+                <section id="education">
+                    <div class="float-wrap">
+                        <p class="title-text">관교초등학교</p>
+                        <p class="year-text">2009-2013</p>
+                    </div>
+                    <div class="float-wrap">
+                        <p class="title-text">관교여자중학교</p>
+                        <p class="year-text">2014 - 2016</p>
+                    </div>
+                    <div class="float-wrap">
+                        <p class="title-text">미추홀외국어고등학교</p>
+                        <p class="year-text">2017 - 2019</p>
+                    </div>
+                </section>
+
+        </section>
+           
+
+        
+        <div class="sns-wrap">
+            <a href="https://www.instagram.com/euzlne/"><img class="sns-img" src="images/insta.png"></a>
+        </div>
+            
+    </div>
+    <footer>
+        <p>Copyright CODE LION ALL rights reserved.</p>  
+    </footer>
+
+    <script>
+        var ID = prompt('아이디를 입력하세요','');
+        if (ID == 'SKKU'){
+            var PW = prompt('비밀번호를 입력하세요','');
+            if (PW == 1398){
+                $('.mainbox').css('display','block');
+            }
+            else{
+                alert('비밀번호가 일치하지 않습니다.');
+                location.reload();
+            }
+        }
+        else{
+            alert('ID가 일치하지 않습니다.');
+            location.reload();
+        }
+
+        var profVis = false;
+        $('.AboutMeBox').click(function(){
+            if (profVis == false){
+                $('#profile').slideDown(200);
+                profVis = true
+            }
+            else{
+                $('#profile').slideUp(200);
+                profVis = false
+            }
+        })
+
+        var expVis = false;
+        $('.ExperienceBox').click(function(){
+            if (expVis == false){
+                $('#experience').slideDown(200);
+                expVis = true
+            }
+            else{
+                $('#experience').slideUp(200);
+                expVis = false
+            }
+        })
+
+       
+
+        var actVis = false;
+        $('.ActivityBox').click(function(){
+            if (actVis == false){
+                $('#activity').slideDown(200);
+                actVis = true
+            }
+            else{
+                $('#activity').slideUp(200);
+                actVis = false
+            }
+        })
+
+        var eduVis = false;
+        $('.EduBox').click(function(){
+            if (eduVis == false){
+                $('#education').slideDown(200);
+                eduVis = true
+            }
+            else{
+                $('#education').slideUp(200);
+                eduVis = false
+            }
+        })
+           
+
+    </script>
+</body>
+</html>
