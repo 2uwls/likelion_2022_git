@@ -4,13 +4,14 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import Menubar from './pages/Menubar';
 import Movie from './pages/Movie';
+import { URL_PATH_HOME, URL_PATH_MOVIES } from './lib/path';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Menubar/>}>
-      <Route path="/Home" element={<Home/>}></Route>
-      <Route path="/Movies" element={<Movies/>}></Route>
+      <Route path={URL_PATH_HOME} element={<Home/>}></Route>
+      <Route path={URL_PATH_MOVIES} element={<Movies/>}></Route>
       <Route path=":movieId" element={<Movie/>}/>
     </Route>
     <Route path="*" element={<div>There's nothing here!</div>} >
