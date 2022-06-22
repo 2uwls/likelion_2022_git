@@ -10,6 +10,8 @@ import Footer from './Footer';
 import ShowPost from './ShowPost';
 import WritePost from './WritePost';
 
+const API_URL = 'https://reactapitest.pythonanywhere.com/api/';
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
 
@@ -26,10 +28,10 @@ function App() {
               <Route
                 exact
                 path="/"
-                element={<ShowPostList navigate={navigate}></ShowPostList>}
+                element={<ShowPostList apiUrl={API_URL}></ShowPostList>}
               />
-              <Route path="/write" element={<WritePost></WritePost>} />
-              <Route path="/post/:postID" element={<ShowPost></ShowPost>} />
+              <Route path="/write" element={<WritePost apiUrl={API_URL}></WritePost>} />
+              <Route path="/post/:postID" element={<ShowPost apiUrl={API_URL}></ShowPost>} />
             </Routes>
           </Main>
           <Footer></Footer>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import {
   LoadingDiv,
   LoadingImg,
@@ -65,9 +66,9 @@ const PostAndRepl = React.memo(
         ) : (
           repls &&
           repls.map((element) => (
-            <PostReplDiv key={element.id}>
+            <PostReplDiv key={element}>
               <Replwriter>익명</Replwriter>
-              <Repl>{element.contents}</Repl>
+              <Repl>{element}</Repl>
             </PostReplDiv>
           ))
         )}
@@ -76,7 +77,7 @@ const PostAndRepl = React.memo(
   },
 );
 
-const ShowPost = (props) => {
+const ShowPost = ({apiUrl}) => {
   const Params = useParams();
   const [post, setPost] = useState(null);
   const [repls, setRepls] = useState([]);
@@ -85,18 +86,15 @@ const ShowPost = (props) => {
   const replInput = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
-      setPost(postData);
-      setPostLoading(false);
-    }, 300);
-    replInput.current.focus();
-  }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      setRepls(replData);
-      setReplLoading(false);
-    }, 1000);
-  }, []);
+    axios.get(`${apiUrl}posts/${Params.postID}`)
+      .then(response => {
+        setPost(response.data)
+        setPostLoading(false);
+        setRepls(response.data.repls);
+        setReplLoading(false);
+        replInput.current.focus();
+      })
+  }, [])
 
   const [repl, setRepl] = useState('');
 
@@ -107,6 +105,15 @@ const ShowPost = (props) => {
   // for useMemo
   const replCount = useMemo(() => countRepls(repls), [repls]);
   // const replCount = countRepls(repls);
+
+  const onSubmitRepl = () => {
+    axios.post(`${apiUrl}repl/`, {
+      contents: repl,
+      post: Params.postID,
+    }).then(() => {
+      window.location.reload();
+    })
+  }
 
   if (!Params.postID) {
     return <PostSection>잘못된 접근입니다.</PostSection>;
@@ -127,7 +134,7 @@ const ShowPost = (props) => {
             value={repl}
             ref={replInput}
           ></ReplInput>
-          <ReplSubmitDiv>
+          <ReplSubmitDiv onClick={onSubmitRepl}>
             <span>입력</span>
           </ReplSubmitDiv>
         </WritereplDiv>

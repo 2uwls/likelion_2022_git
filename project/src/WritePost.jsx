@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InputPost from './InputPost';
 import {
   PostSection,
@@ -8,13 +10,13 @@ import {
 } from './styledComponent';
 import WriteTitle from './WriteTitle';
 
-const SubmitComponent = React.memo(() => (
+const SubmitComponent = React.memo(({onSubmit}) => (
   <PostSubmitDiv>
-    <PostSubmit>작성완료</PostSubmit>
+    <PostSubmit onClick={onSubmit}>작성완료</PostSubmit>
   </PostSubmitDiv>
 ));
 
-const WritePost = (props) => {
+const WritePost = ({apiUrl}) => {
   const [inputs, setInputs] = useState({
     title: '',
     contents: '',
@@ -30,6 +32,18 @@ const WritePost = (props) => {
     });
   };
 
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    axios.post(`${apiUrl}/posts/`, {
+      title: inputs.title,
+      contents: inputs.contents,
+      repls: [],
+    }).then(() => {
+      navigate('../');
+    })
+  }
+
   return (
     <PostSection>
       <WriteTitle testw={testw} />
@@ -40,7 +54,7 @@ const WritePost = (props) => {
           contents={contents}
         ></InputPost>
       </PostWriteDiv>
-      <SubmitComponent></SubmitComponent>
+      <SubmitComponent onSubmit={onSubmit}></SubmitComponent>
     </PostSection>
   );
 };
