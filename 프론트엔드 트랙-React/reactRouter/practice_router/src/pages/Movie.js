@@ -5,14 +5,14 @@ import { useParams, useLocation, useSearchParams } from "react-router-dom";
 const Movie = () => {
   //URL 파라미터 사용하기
   const params = useParams();
-  console.log(params);
+  // console.log(params);
 
   const movie = getMovie(parseInt(params.movieId));
-  console.log(movie);
+  // console.log(movie);
 
   //쿼리 스트링 사용하기
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const detail = searchParams.get("detail");

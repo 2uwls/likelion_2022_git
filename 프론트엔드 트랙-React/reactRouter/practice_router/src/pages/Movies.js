@@ -16,7 +16,7 @@ const Movies = () => {
               style={({ isActive }) => {
                 return {
                     textDecoration: isActive ? "underline" : "",
-                    color: isActive ? "FF9E" : ""
+                    color: isActive ? "#FF9E1B" : ""
                 }
               }}
             >
